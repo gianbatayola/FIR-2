@@ -35,6 +35,7 @@ for i in range(len(perm)):
 
     features_copy = np.delete(features, perm[i], 0)
 
+    
     X_copy = np.delete(X_copy, perm[i], 1)
 
     X_train, X_test, y_train, y_test = train_test_split(X_copy, y_copy, test_size=1 / 3,
@@ -45,7 +46,9 @@ for i in range(len(perm)):
     model = Model(3, 8, 8, n_test_samples)
     acc = model.evaluate(X_train, y_train, X_test, y_test)
     feats = model.rank(X_test, y_test, features_copy)
-
+    
+    #print(features_copy, acc)
+    
     ncr_acc.append(acc)
     ncr_feats.append(feats)
 print(time.time() - startTime)

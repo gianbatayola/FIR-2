@@ -1,6 +1,7 @@
 import os
 import tensorflow as tf
 import numpy as np
+from numpy.random import seed
 from sklearn.inspection import permutation_importance
 
 # hides messages about CPU usage
@@ -18,6 +19,7 @@ def build_model(inp_int_: int, l1_w_: int,
 
     :return: keras model to be used.
     """
+    seed(1)
     # uses (inp * l1 + l1) + (l1 * l2 + l2) + (out * l2 + out) formula
     inp = tf.keras.Input(shape=(inp_int_,))
     l1 = tf.keras.layers.Dense(l1_w_, kernel_initializer='uniform', activation='relu')(inp)
